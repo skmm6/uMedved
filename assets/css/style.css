@@ -1,0 +1,61 @@
+.app {
+  display: flex;
+}
+
+.app-img {
+  box-sizing: border-box;
+  height: 100vh;
+  width: 55%;
+  object-fit: cover;
+  display: block;
+}
+
+/* HEADER */
+.header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.header-logo {
+  width: 16.2rem;
+}
+
+.header-contact {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.header-contact__phone {
+  color: #000;
+  font-size: 1.4rem;
+  line-height: 1.7rem;
+  font-weight: 400;
+  padding-right: 1rem;
+}
+
+.header-contact__phone a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.header-contact i {
+  font-size: 2rem;
+}
+/* footer */
+.footer-contact,
+.footer-data {
+  font-size: 1.2rem;
+  line-height: 1.5rem;
+  text-align: right;
+  text-transform: uppercase;
+}
+
+/* HOME PAGE */
+.app-content.home-page {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
