@@ -32,6 +32,11 @@ html {
   font-family: "Montserrat", sans-serif;
 }
 
+a {
+  text-decoration: none;
+  color: currentColor;
+}
+
 .container {
   max-width: 120rem;
   padding: 0 2rem;
@@ -48,11 +53,32 @@ h1 {
 /* ========================Общие компоненты ========================*/
 
 .btn-black {
+  display: block;
   font-weight: 600;
   font-size: 16px;
   line-height: 20px;
-  color: #fff;
   padding: 1.9rem 3.8rem;
-  background-color: #000;
   font-family: "Montserrat", sans-serif;
+  cursor: pointer;
+  transition: 0.3s ease;
+  border-radius: 0;
+  border: 2px solid;
+}
+@media screen and (max-width: 600px) {
+  .btn-black {
+    padding: 1.9rem;
+  }
+}
+
+.btn-black {
+  background-color: #000;
+  color: #fff;
+}
+
+.btn-black:hover,
+.btn-black:active {
+  background-color: #fff;
+  color: #000;
+  border: solid 2px #000;
+  border-radius: 0;
 }

@@ -43,8 +43,14 @@
 
 .header-contact i {
   font-size: 2rem;
+  margin-right: 0.5rem;
 }
-/* footer */
+/* ======================== FOOTER ========================*/
+.footer {
+  max-width: 46rem;
+  align-self: flex-end;
+}
+
 .footer-contact,
 .footer-data {
   font-size: 1.2rem;
@@ -53,9 +59,28 @@
   text-transform: uppercase;
 }
 
-/* HOME PAGE */
+.footer-data {
+  display: block;
+  margin-top: 1rem;
+  text-decoration: underline;
+}
+
+/* ========================HOME PAGE ========================*/
+
+.container-home {
+  margin: 4rem 19rem 4rem 4rem;
+  max-width: 46.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
 .app-content.home-page {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+}
+
+.home-page .btn-black {
+  margin-top: 3.4rem;
 }
