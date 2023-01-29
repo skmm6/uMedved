@@ -10,6 +10,19 @@
   display: block;
 }
 
+.app-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.container-constructor {
+  height: 100vh;
+  max-width: 116rem;
+  padding: 1rem;
+  margin: 0 auto;
+}
+
 /* HEADER */
 .header {
   display: flex;
@@ -70,9 +83,6 @@
 .container-home {
   margin: 4rem 19rem 4rem 4rem;
   max-width: 46.5rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
 }
 
 .app-content.home-page {
@@ -83,4 +93,10 @@
 
 .home-page .btn-black {
   margin-top: 3.4rem;
+}
+
+/* ====================constructor-page-1======================================== */
+
+.constructor-page-1 {
+  display: none;
 }
