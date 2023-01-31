@@ -56,7 +56,6 @@ h2 {
   font-weight: 700;
   font-size: 38px;
   line-height: 48px;
-  text-align: center;
   text-transform: uppercase;
 }
 /* ========================Общие компоненты ========================*/
@@ -68,7 +67,8 @@ h2 {
   display: none;
 }
 
-.btn-black {
+.btn-black,
+.btn-white {
   display: block;
   font-weight: 600;
   font-size: 16px;
@@ -81,7 +81,8 @@ h2 {
   border: 2px solid;
 }
 @media screen and (max-width: 600px) {
-  .btn-black {
+  .btn-black,
+  .btn-white {
     padding: 1.9rem;
   }
 }
@@ -96,5 +97,18 @@ h2 {
   background-color: #fff;
   color: #000;
   border: solid 2px #000;
+  border-radius: 0;
+}
+
+.btn-white {
+  background-color: #fff;
+  color: #000;
+}
+
+.btn-white:hover,
+.btn-white:active {
+  background-color: #000;
+  color: #fff;
+  border: solid 2px #fff;
   border-radius: 0;
 }

@@ -78,8 +78,18 @@
   text-decoration: underline;
 }
 
-/* ========================HOME PAGE ========================*/
+.footer-constructor {
+  align-self: flex-start;
+}
+.footer-constructor .footer-contact,
+.footer-constructor .footer-data {
+  text-align: left;
+}
 
+/* ========================HOME PAGE ========================*/
+.home-page {
+  display: none;
+}
 .container-home {
   margin: 4rem 19rem 4rem 4rem;
   max-width: 46.5rem;
@@ -99,4 +109,77 @@
 
 .constructor-page-1 {
   display: none;
+}
+
+.constructor-page-1 .btn-black {
+  margin-top: 4rem;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 1.9rem 7.5rem;
+}
+
+.constructor-page-1__heading {
+  text-align: center;
+}
+/* ====================kitchen================== */
+
+.kitchen {
+  display: none;
+}
+
+.figure {
+  display: none;
+}
+
+.kitchen-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 6.5rem;
+}
+
+.kitchen .btn-white,
+.kitchen .btn-black {
+  font-size: 1.3rem;
+  line-height: 1.6rem;
+  padding: 1.7rem 1.9rem;
+}
+.kitchen-nav__btn {
+  display: flex;
+}
+.kitchen .btn-black {
+  border: 2px solid #000;
+  margin-left: 1rem;
+}
+
+.kitchen .btn-white {
+  min-width: 15.9rem;
+}
+/* ====================figure================== */
+.figure {
+  display: none;
+}
+
+.figure-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.figure .btn-white,
+.figure .btn-black {
+  font-size: 1.3rem;
+  line-height: 1.6rem;
+  padding: 1.7rem 1.9rem;
+}
+.figure-nav__btn {
+  display: flex;
+}
+.figure .btn-black {
+  border: 2px solid #000;
+  margin-left: 1rem;
+}
+
+.figure .btn-white {
+  min-width: 15.9rem;
 }
