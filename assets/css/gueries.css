@@ -25,6 +25,16 @@
   .footer-constructor .footer-data {
     text-align: right;
   }
+
+  /* kitchen */
+  .kitchen-nav__btn {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .kitchen .btn-black {
+    margin-left: 0;
+  }
 }
 
 @media screen and (max-width: 600px) {
@@ -60,5 +70,25 @@
   h2 {
     font-size: 32px;
     line-height: 40px;
+  }
+
+  /* kitchen */
+
+  .kitchen-content .kitchen-form {
+    flex-wrap: nowrap;
+  }
+
+  .kitchen-nav__btn {
+    display: none;
+  }
+
+  .kitchen-nav__mob {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+  .kitchen-nav__mob .btn-white,
+  .kitchen-nav__mob .btn-black {
+    max-width: 100%;
   }
 }

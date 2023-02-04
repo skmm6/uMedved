@@ -17,7 +17,7 @@
 }
 
 .container-constructor {
-  height: 100vh;
+  min-height: 100vh;
   max-width: 116rem;
   padding: 1rem;
   margin: 0 auto;
@@ -125,10 +125,7 @@
 
 .kitchen {
   display: none;
-}
-
-.figure {
-  display: none;
+  margin-top: 5.7rem;
 }
 
 .kitchen-nav {
@@ -155,6 +152,51 @@
 .kitchen .btn-white {
   min-width: 15.9rem;
 }
+.kitchen-content {
+  margin-bottom: 7rem;
+}
+.kitchen-content form {
+  margin-top: 4.2rem;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  gap: 2rem;
+  max-height: 34rem;
+  overflow-x: scroll;
+  padding: 2rem 0;
+}
+
+.kitchen-checkbox input[type="radio"]:checked + label::before,
+.kitchen-checkbox input[type="radio"]:not(:checked) + label::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 2.4rem;
+  height: 2.4rem;
+  border: 1px solid #000;
+  background-color: #fff;
+}
+
+.kitchen-checkbox > input[type="radio"]:checked + label::after {
+  content: "✓";
+  position: absolute;
+  transition: all 0.2s ease;
+  left: 5px;
+  top: 1px;
+  font-size: 2.7rem;
+}
+
+.kitchen-checkbox {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+}
+
+.kitchen-nav__mob {
+  display: none;
+}
+
 /* ====================figure================== */
 .figure {
   display: none;

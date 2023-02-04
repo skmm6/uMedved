@@ -14,6 +14,13 @@ let pageNumber = 2;
 btnOpenConstructor.addEventListener("click", () => {
   pageNumber++;
   pagesNumber();
+  app.classList.add("open");
+  containerContent.classList.remove("container-home");
+  containerContent.classList.add("container-constructor");
+  homeImg.classList.add("close");
+  // homePage.classList.add("close");
+  // constructorPage1.classList.add("open");
+  footer.classList.add("footer-constructor");
 });
 
 if (pageNumber > 0) {
@@ -71,3 +78,15 @@ pagesNumber();
 // pages[i].classList.add("open");
 
 // =======================КОНСТРУКТОР СЛАЙДЕР СТРАНИЦ=================//
+
+// собираем данные с форм
+let stateDataForm = {};
+
+console.log(document.forms.kitchens);
+
+if (pageNumber === 2) {
+  document.forms.kitchens.oninput = function () {
+    stateDataForm["kitchen"] = document.forms.kitchens.elements.kitchen.value;
+    console.log(stateDataForm);
+  };
+}
