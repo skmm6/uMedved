@@ -5,11 +5,67 @@ const homeImg = document.querySelector(".app-img");
 const homePage = document.querySelector(".home-page");
 const constructorPage1 = document.querySelector(".constructor-page-1");
 const footer = document.querySelector(".footer");
-
 const btnOpenConstructor = document.getElementById("open-constructor");
+
+// const кнопок
+const btnsNext = document.querySelectorAll(".next");
+const btnsPrev = document.querySelectorAll(".prev");
+
+// kitchen контейнер форма
+const containersKitchens = document.querySelector(".kitchen-form");
 
 // стейт для страниц
 let pageNumber = 2;
+
+const kitchens = [
+  "Итальянская кухня",
+  "Грузинская кухня",
+  "Русская кухня",
+  "Японская кухня",
+  "Корейская кухня",
+  "Ирландская кухня",
+  "Испанская кухня",
+  "Американская кухня",
+];
+
+// отоброжение контента конструктора
+
+const displayContent = function () {
+  if (pageNumber === 2) {
+    displayKitchens();
+  }
+};
+
+const pagesNumber = function () {
+  pages.forEach((page, id) => {
+    if (pageNumber === id) {
+      page.classList.add("open");
+      displayContent();
+    } else {
+      page.classList.remove("open");
+    }
+  });
+};
+
+//Рендер kitchen
+const displayKitchens = function () {
+  containersKitchens.innerHTML = "";
+  kitchens.forEach((kitchen, id) => {
+    const html = `
+      <div class="kitchen-checkbox">
+        <input
+        type="radio"
+        name="kitchen"
+        id="kitchen1"
+        value="${kitchen}"
+        checked
+        />
+        <label for="kitchen1">${kitchen}</label>
+      </div>
+    `;
+    containersKitchens.insertAdjacentHTML("beforeend", html);
+  });
+};
 
 btnOpenConstructor.addEventListener("click", () => {
   pageNumber++;
@@ -18,8 +74,8 @@ btnOpenConstructor.addEventListener("click", () => {
   containerContent.classList.remove("container-home");
   containerContent.classList.add("container-constructor");
   homeImg.classList.add("close");
-  // homePage.classList.add("close");
-  // constructorPage1.classList.add("open");
+  homePage.classList.add("close");
+  constructorPage1.classList.add("open");
   footer.classList.add("footer-constructor");
 });
 
@@ -39,19 +95,6 @@ if (pageNumber > 0) {
 
 const pages = document.querySelectorAll(".pages");
 console.log(pages);
-
-const pagesNumber = function () {
-  pages.forEach((page, id) => {
-    if (pageNumber === id) {
-      page.classList.add("open");
-    } else {
-      page.classList.remove("open");
-    }
-  });
-};
-// const кнопок
-const btnsNext = document.querySelectorAll(".next");
-const btnsPrev = document.querySelectorAll(".prev");
 
 // для кнопки продолжить
 btnsNext.forEach((btn) => {
