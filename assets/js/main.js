@@ -15,7 +15,7 @@ const btnsPrev = document.querySelectorAll(".prev");
 const containersKitchens = document.querySelector(".kitchen-form");
 
 // стейт для страниц
-let pageNumber = 2;
+let pageNumber = 3;
 
 const kitchens = [
   "Итальянская кухня",
@@ -28,11 +28,19 @@ const kitchens = [
   "Американская кухня",
 ];
 
+// собираем данные с форм
+let stateDataForm = {};
+
 // отоброжение контента конструктора
 
 const displayContent = function () {
   if (pageNumber === 2) {
     displayKitchens();
+    document.forms.kitchens.oninput = function () {
+      stateDataForm["kitchen"] =
+        document.forms.kitchens.elements.kitchens.value;
+      console.log(stateDataForm);
+    };
   }
 };
 
@@ -50,17 +58,19 @@ const pagesNumber = function () {
 //Рендер kitchen
 const displayKitchens = function () {
   containersKitchens.innerHTML = "";
+  if (kitchens.length + 1 <= 40) {
+    containersKitchens.classList.add("autof");
+  }
   kitchens.forEach((kitchen, id) => {
     const html = `
       <div class="kitchen-checkbox">
         <input
         type="radio"
-        name="kitchen"
-        id="kitchen1"
+        name="kitchens"
+        id="kitchen${id + 1}"
         value="${kitchen}"
-        checked
         />
-        <label for="kitchen1">${kitchen}</label>
+        <label for="kitchen${id + 1}">${kitchen}</label>
       </div>
     `;
     containersKitchens.insertAdjacentHTML("beforeend", html);
@@ -122,14 +132,7 @@ pagesNumber();
 
 // =======================КОНСТРУКТОР СЛАЙДЕР СТРАНИЦ=================//
 
-// собираем данные с форм
-let stateDataForm = {};
-
 console.log(document.forms.kitchens);
 
 if (pageNumber === 2) {
-  document.forms.kitchens.oninput = function () {
-    stateDataForm["kitchen"] = document.forms.kitchens.elements.kitchen.value;
-    console.log(stateDataForm);
-  };
 }

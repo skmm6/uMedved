@@ -129,3 +129,18 @@ input[type="radio"]:not(:checked) + label {
   line-height: 2rem;
   cursor: pointer;
 }
+
+/* Контейнера конструктора с 3 странциы */
+.content-container__nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 6.5rem;
+}
+
+.content-container__btn {
+  display: flex;
+}
+.content-container__navmob {
+  display: none;
+}

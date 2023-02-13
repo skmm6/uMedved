@@ -35,6 +35,10 @@
   .kitchen .btn-black {
     margin-left: 0;
   }
+
+  .kitchen-content .kitchen-form {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 @media screen and (max-width: 600px) {
@@ -72,23 +76,28 @@
     line-height: 40px;
   }
 
+  .content-container__navmob {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+
+  .content-container__btn {
+    display: none;
+  }
+
   /* kitchen */
 
   .kitchen-content .kitchen-form {
     flex-wrap: nowrap;
   }
 
-  .kitchen-nav__btn {
-    display: none;
-  }
-
-  .kitchen-nav__mob {
-    display: flex;
-    gap: 1rem;
-    margin-top: 2rem;
-  }
   .kitchen-nav__mob .btn-white,
   .kitchen-nav__mob .btn-black {
     max-width: 100%;
+  }
+
+  .kitchen-content .kitchen-form {
+    grid-template-columns: 1fr;
   }
 }
