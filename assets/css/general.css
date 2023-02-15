@@ -136,6 +136,8 @@ input[type="radio"]:not(:checked) + label {
   justify-content: space-between;
   align-items: flex-start;
   gap: 6.5rem;
+  margin-bottom: 4rem;
+  margin-top: 5rem;
 }
 
 .content-container__btn {
@@ -143,4 +145,20 @@ input[type="radio"]:not(:checked) + label {
 }
 .content-container__navmob {
   display: none;
+}
+
+.content-container__btn .btn-white,
+.content-container__btn .btn-black {
+  font-size: 1.3rem;
+  line-height: 1.6rem;
+  padding: 1.7rem 1.9rem;
+}
+
+.content-container__btn .btn-black {
+  border: 2px solid #000;
+  margin-left: 1rem;
+}
+
+.content-container__btn .btn-white {
+  min-width: 15.9rem;
 }
