@@ -162,3 +162,8 @@ input[type="radio"]:not(:checked) + label {
 .content-container__btn .btn-white {
   min-width: 15.9rem;
 }
+
+.disabled {
+  pointer-events: none;
+  opacity: 0.7;
+}

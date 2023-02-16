@@ -13,7 +13,9 @@ const btnsPrev = document.querySelectorAll(".prev");
 
 // kitchen контейнер форма
 const containersKitchens = document.querySelector(".kitchen-form");
-
+// figure
+const figuresContainer = document.querySelector(".figure-all");
+const figureImgActive = document.querySelector(".figure-img__active");
 // стейт для страниц
 let pageNumber = 3;
 
@@ -27,6 +29,31 @@ const kitchens = [
   "Испанская кухня",
   "Американская кухня",
 ];
+// ========================== ФИГУРЫ 1 объект 1 фигура===================
+const kvadrat = {
+  figure: "kvadrat",
+  name: "Квадрат",
+  img: "./assets/img/figure/kvadrat.png",
+};
+const rectangle = {
+  figure: "rectangle",
+  name: "Прямоугольник",
+  img: "./assets/img/figure/rectangle.png",
+};
+const circle = {
+  figure: "circle",
+  name: "Круг",
+  img: "./assets/img/figure/circle.png",
+};
+const elips = {
+  figure: "elips",
+  name: "Элипс",
+  img: "./assets/img/figure/elips.png",
+};
+
+const arrFigures = [kvadrat, rectangle, circle, elips];
+// ========================== ФИГУРЫ 1 объект 1 фигура===================
+console.log(arrFigures);
 
 // собираем данные с форм
 let stateDataForm = {};
@@ -41,6 +68,8 @@ const displayContent = function () {
         document.forms.kitchens.elements.kitchens.value;
       console.log(stateDataForm);
     };
+  } else if (pageNumber === 3) {
+    displayFigures();
   }
 };
 
@@ -77,6 +106,45 @@ const displayKitchens = function () {
   });
 };
 
+// ====================РЕНДЕР ФИГУРЫ ======================
+const displayFigures = function () {
+  const btns = document.querySelectorAll(".next");
+  btns.forEach((btn) => {
+    btn.classList.add("disabled");
+  });
+
+  figuresContainer.innerHTML = "";
+  arrFigures.forEach((fig, id) => {
+    const html = `
+      <div class="figure-one">
+        <div class="figure-one__img">
+        <img src="./assets/img/figure/${fig.figure}-1.png" alt="" />
+        </div>
+        <div class="figure-one__text">${fig.name}</div>
+      </div>
+    `;
+    figuresContainer.insertAdjacentHTML("beforeend", html);
+  });
+
+  const figuresEl = document.querySelectorAll(".figure-one");
+  console.log(figuresEl);
+  figuresEl.forEach((figure, id) => {
+    figure.addEventListener("click", () => {
+      btns.forEach((btn) => {
+        btn.classList.remove("disabled");
+      });
+      figuresEl.forEach((fig) => {
+        fig.classList.remove("active");
+      });
+      figure.classList.add("active");
+      stateDataForm.figure = `${arrFigures[id].figure}`;
+      stateDataForm.figureName = `${arrFigures[id].name}`;
+      figureImgActive.src = `./assets/img/figure/${stateDataForm.figure}.png`;
+    });
+  });
+};
+
+// ====================РЕНДЕР ФИГУРЫ ======================
 btnOpenConstructor.addEventListener("click", () => {
   pageNumber++;
   pagesNumber();
