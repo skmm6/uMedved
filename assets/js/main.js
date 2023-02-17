@@ -16,8 +16,10 @@ const containersKitchens = document.querySelector(".kitchen-form");
 // figure
 const figuresContainer = document.querySelector(".figure-all");
 const figureImgActive = document.querySelector(".figure-img__active");
+// SIZES
+const sizesContainer = document.querySelector(".sizes-all");
 // стейт для страниц
-let pageNumber = 3;
+let pageNumber = 4;
 
 const kitchens = [
   "Итальянская кухня",
@@ -53,6 +55,48 @@ const elips = {
 
 const arrFigures = [kvadrat, rectangle, circle, elips];
 // ========================== ФИГУРЫ 1 объект 1 фигура===================
+// ========================== РАЗМЕРЫ 1 объект 1 РАЗМЕР===================
+const size150x150 = {
+  width: 150,
+  height: 150,
+};
+
+const size160x160 = {
+  width: 160,
+  height: 160,
+};
+
+const size170x170 = {
+  width: 170,
+  height: 170,
+};
+
+const size180x180 = {
+  width: 180,
+  height: 180,
+};
+
+const size190x190 = {
+  width: 190,
+  height: 190,
+};
+
+const size200x200 = {
+  width: 200,
+  height: 200,
+};
+
+// МАССИВ ВСЕХ размеров
+
+const arrSizes = [
+  size150x150,
+  size160x160,
+  size170x170,
+  size180x180,
+  size190x190,
+  size200x200,
+];
+// ========================== РАЗМЕРЫ 1 объект 1 РАЗМЕР===================
 console.log(arrFigures);
 
 // собираем данные с форм
@@ -70,6 +114,8 @@ const displayContent = function () {
     };
   } else if (pageNumber === 3) {
     displayFigures();
+  } else if (pageNumber === 4) {
+    displaySizes();
   }
 };
 
@@ -116,7 +162,7 @@ const displayFigures = function () {
   figuresContainer.innerHTML = "";
   arrFigures.forEach((fig, id) => {
     const html = `
-      <div class="figure-one">
+      <div class="figure-one page-box__one">
         <div class="figure-one__img">
         <img src="./assets/img/figure/${fig.figure}-1.png" alt="" />
         </div>
@@ -143,8 +189,43 @@ const displayFigures = function () {
     });
   });
 };
-
 // ====================РЕНДЕР ФИГУРЫ ======================
+// ==================== РЕНДЕР РАЗМЕРОВ ==================
+const displaySizes = function () {
+  const btns = document.querySelectorAll(".next");
+  btns.forEach((btn) => {
+    btn.classList.add("disabled");
+  });
+
+  const pageImgFigureSize = document.querySelector(".sizes-img__active");
+  pageImgFigureSize.src = `./assets/img/figure/${stateDataForm.figure}-size.png`;
+  sizesContainer.innerHTML = "";
+  arrSizes.forEach((size, i) => {
+    const html = `
+    <div class="sizes-one page-box__one">
+       <span>${size.height} X ${size.width}</span>
+    </div>
+  `;
+    sizesContainer.insertAdjacentHTML("beforeend", html);
+  });
+  const sizesEl = document.querySelectorAll(".sizes-one");
+  console.log(sizesEl);
+  sizesEl.forEach((size, id) => {
+    size.addEventListener("click", () => {
+      btns.forEach((btn) => {
+        btn.classList.remove("disabled");
+      });
+      sizesEl.forEach((size) => {
+        size.classList.remove("active");
+      });
+      size.classList.add("active");
+      stateDataForm.sizeWidth = `${arrSizes[id].width}`;
+      stateDataForm.sizeHeight = `${arrSizes[id].height}`;
+    });
+  });
+};
+// ==================== РЕНДЕР РАЗМЕРОВ ==================
+
 btnOpenConstructor.addEventListener("click", () => {
   pageNumber++;
   pagesNumber();

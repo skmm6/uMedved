@@ -199,16 +199,16 @@
   display: none;
 }
 
-.figure-content {
+/* .figure-content {
   display: flex;
   flex-direction: column;
   gap: 2rem;
-}
+} */
 
-.figure-box {
+/* .figure-box {
   display: flex;
   gap: 2rem;
-}
+} */
 
 .figure-box .figure-img,
 .figure-box .figure-all {
@@ -276,3 +276,28 @@
   border-radius: 999px;
   color: #fff;
 }
+/* ====================sizes================== */
+.sizes {
+  display: none;
+}
+
+.sizes-one {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 20px;
+  border: 1px solid #000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+
+  cursor: pointer;
+}
+
+.sizes .sizes-content .sizes-all {
+  grid-template-rows: repeat(5, 1fr);
+}
+
+/* ====================sizes================== */
