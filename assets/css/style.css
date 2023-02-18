@@ -283,8 +283,8 @@
 
 .sizes-one {
   font-weight: 400;
-  font-size: 16px;
-  line-height: 20px;
+  font-size: 1.6rem;
+  line-height: 2rem;
   border: 1px solid #000;
   display: flex;
   justify-content: center;
@@ -301,3 +301,25 @@
 }
 
 /* ====================sizes================== */
+
+/*====================================== hendel ====================================== */
+.hendel {
+  display: none;
+}
+
+.hendel-one {
+  font-weight: 400;
+  font-size: 1.6rem;
+  line-height: 2rem;
+  border: 1px solid #000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  text-transform: uppercase;
+}
+
+.hendel-one img {
+  width: 100%;
+}
+/*====================================== hendel ====================================== */

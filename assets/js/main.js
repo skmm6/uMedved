@@ -18,8 +18,11 @@ const figuresContainer = document.querySelector(".figure-all");
 const figureImgActive = document.querySelector(".figure-img__active");
 // SIZES
 const sizesContainer = document.querySelector(".sizes-all");
+// HEndel
+const hendelContainer = document.querySelector(".hendel-all");
+
 // стейт для страниц
-let pageNumber = 4;
+let pageNumber = 5;
 
 const kitchens = [
   "Итальянская кухня",
@@ -97,10 +100,29 @@ const arrSizes = [
   size200x200,
 ];
 // ========================== РАЗМЕРЫ 1 объект 1 РАЗМЕР===================
+
+// ========================== РУЧКА===================
+const arrHendels = [
+  "Без ручки",
+  "hendel1",
+  "hendel2",
+  "hendel3",
+  "hendel4",
+  "hendel5",
+  "hendel6",
+];
+// ========================== РУЧКА===================
 console.log(arrFigures);
 
 // собираем данные с форм
-let stateDataForm = {};
+let stateDataForm = {
+  figure: "kvadrat",
+  figureName: "Квадрат",
+  kitchen: "Итальянская кухня",
+  sizeHeight: "150",
+  sizeWidth: "150",
+  hendelImg: "kvadrat-hendel1",
+};
 
 // отоброжение контента конструктора
 
@@ -116,6 +138,8 @@ const displayContent = function () {
     displayFigures();
   } else if (pageNumber === 4) {
     displaySizes();
+  } else if (pageNumber === 5) {
+    displayHendel();
   }
 };
 
@@ -190,8 +214,30 @@ const displayFigures = function () {
   });
 };
 // ====================РЕНДЕР ФИГУРЫ ======================
+
 // ==================== РЕНДЕР РАЗМЕРОВ ==================
+// Рендер размеров
+const renderSizesWH = function (position) {
+  const posotions = document.querySelector(`.${position}-position`);
+  const sizesWidth = document.querySelector(`.${position}-width`);
+  const sizesHeight = document.querySelector(`.${position}-height`);
+
+  if (sizesWidth == null) {
+    const html = `
+    <span class="${position}-width width">${stateDataForm.sizeWidth}</span>
+    <span class="${position}-height height">${stateDataForm.sizeHeight}</span>
+  `;
+    posotions.insertAdjacentHTML("beforeend", html);
+  } else {
+    sizesWidth.textContent = `${stateDataForm.sizeWidth}`;
+    sizesHeight.textContent = `${stateDataForm.sizeHeight}`;
+  }
+};
+
 const displaySizes = function () {
+  renderSizesWH("sizes");
+  const sizesWidth = document.querySelector(".sizes-width");
+  const sizesHeight = document.querySelector(".sizes-height");
   const btns = document.querySelectorAll(".next");
   btns.forEach((btn) => {
     btn.classList.add("disabled");
@@ -221,10 +267,67 @@ const displaySizes = function () {
       size.classList.add("active");
       stateDataForm.sizeWidth = `${arrSizes[id].width}`;
       stateDataForm.sizeHeight = `${arrSizes[id].height}`;
+      sizesWidth.textContent = `${stateDataForm.sizeWidth}`;
+      sizesHeight.textContent = `${stateDataForm.sizeHeight}`;
     });
   });
 };
 // ==================== РЕНДЕР РАЗМЕРОВ ==================
+
+// ==================== РЕНДЕР РУЧКИ =====================
+const displayHendel = function () {
+  const btns = document.querySelectorAll(".next");
+  btns.forEach((btn) => {
+    btn.classList.add("disabled");
+  });
+
+  // рендер картинки актуальной и размеров
+  const pageImgHendel = document.querySelector(".hendel-img__active");
+  pageImgHendel.src = `./assets/img/figure/const5/${stateDataForm.figure}-size.png`;
+  renderSizesWH("hendel");
+  hendelContainer.innerHTML = ``;
+  arrHendels.forEach((hendel) => {
+    if (hendel[0] !== "h") {
+      const html = `
+        <div class="hendel-one page-box__one">
+        <span>${hendel}</span>
+        </div>
+      `;
+      hendelContainer.insertAdjacentHTML("beforeend", html);
+    } else {
+      const html = `
+      <div class="hendel-one page-box__one">
+        <img
+          src="./assets/img/figure/const5/${hendel}.png"
+          alt=""
+          srcset=""
+        />
+      </div>
+      `;
+      hendelContainer.insertAdjacentHTML("beforeend", html);
+    }
+  });
+  const hendelEl = document.querySelectorAll(".hendel-one");
+  hendelEl.forEach((hendel, id) => {
+    hendel.addEventListener("click", function () {
+      btns.forEach((btn) => {
+        btn.classList.remove("disabled");
+      });
+      hendelEl.forEach((hendel) => {
+        hendel.classList.remove("active");
+      });
+      hendel.classList.add("active");
+      if (arrHendels[id][0] !== "h") {
+        stateDataForm.hendelText = `${arrHendels[id]}`;
+        stateDataForm.hendelImg = `${stateDataForm.figure}-size`;
+      } else {
+        stateDataForm.hendelImg = `${stateDataForm.figure}-${arrHendels[id]}`;
+      }
+      pageImgHendel.src = `./assets/img/figure/const5/${stateDataForm.hendelImg}.png`;
+    });
+  });
+};
+// ==================== РЕНДЕР РУЧКИ =====================
 
 btnOpenConstructor.addEventListener("click", () => {
   pageNumber++;
@@ -282,6 +385,3 @@ pagesNumber();
 // =======================КОНСТРУКТОР СЛАЙДЕР СТРАНИЦ=================//
 
 console.log(document.forms.kitchens);
-
-if (pageNumber === 2) {
-}
