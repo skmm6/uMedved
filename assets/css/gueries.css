@@ -152,4 +152,13 @@
     font-size: 1.45rem;
     line-height: 1.8rem;
   }
+
+  /* HENDEL */
+
+  .hendel-one {
+    font-size: 1.45rem;
+    line-height: 1.8rem;
+    height: 156px;
+    object-fit: contain;
+  }
 }

@@ -20,9 +20,15 @@ const figureImgActive = document.querySelector(".figure-img__active");
 const sizesContainer = document.querySelector(".sizes-all");
 // HEndel
 const hendelContainer = document.querySelector(".hendel-all");
+// corners
+const cornersContainer = document.querySelector(".corners-all");
+// chamfer
+const chamferContainer = document.querySelector(".chamfer-all");
+// selection
+const selectionContainer = document.querySelector(".selection-all");
 
 // стейт для страниц
-let pageNumber = 5;
+let pageNumber = 8;
 
 const kitchens = [
   "Итальянская кухня",
@@ -112,7 +118,69 @@ const arrHendels = [
   "hendel6",
 ];
 // ========================== РУЧКА===================
-console.log(arrFigures);
+
+// ========================== УГЛЫ====================
+const corner1 = {
+  src: "corners1",
+  text: "С ЕЛЕ ЗАМЕТНЫМ ЗАКРУГЛЕНИЕМ",
+};
+const corner2 = {
+  src: "corners2",
+  text: "СО СРЕДНИМ ЗАКРУГЛЕНИЕМ",
+};
+const corner3 = {
+  src: "corners3",
+  text: "С ХОРОШИМ ЗАКРУГЛЕНИЕМ",
+};
+
+const corners = [corner1, corner2, corner3];
+// ========================== УГЛЫ ===================
+
+// ========================== фаски====================
+const chamfer1 = {
+  src: "chamfer1",
+  text: "минимальное, еле заметное закругление",
+};
+const chamfer2 = {
+  src: "chamfer2",
+  text: "среднее закругление",
+};
+const chamfer3 = {
+  src: "chamfer3",
+  text: "максимальное закругление",
+};
+const chamfer4 = {
+  src: "chamfer4",
+  text: "небольшая фаска на 45° ",
+};
+const chamfer5 = {
+  src: "chamfer5",
+  text: "большая фаска на 45° ",
+};
+
+const chamfers = [chamfer1, chamfer2, chamfer3, chamfer4, chamfer5];
+// ========================== фаски ===================
+
+// ========================== поверхности====================
+const selection1 = {
+  src: "selection1",
+  text: "вариант 1",
+};
+const selection2 = {
+  src: "selection2",
+  text: "вариант 2",
+};
+const selection3 = {
+  src: "selection3",
+  text: "вариант 3",
+};
+const selection4 = {
+  src: "selection4",
+  text: "вариант 4",
+};
+
+const selections = [selection1, selection2, selection3, selection4];
+// ========================== поверхности ===================
 
 // собираем данные с форм
 let stateDataForm = {
@@ -122,6 +190,8 @@ let stateDataForm = {
   sizeHeight: "150",
   sizeWidth: "150",
   hendelImg: "kvadrat-hendel1",
+  cornerSrc: "kvadrat-hendel1-corners1",
+  chamferSrc: "kvadrat-hendel1-corners1-chamfer1",
 };
 
 // отоброжение контента конструктора
@@ -140,6 +210,17 @@ const displayContent = function () {
     displaySizes();
   } else if (pageNumber === 5) {
     displayHendel();
+  } else if (pageNumber === 6) {
+    if (stateDataForm.figure === "circle" || stateDataForm.figure === "elips") {
+      pageNumber++;
+      pagesNumber();
+    } else {
+      displayCorners();
+    }
+  } else if (pageNumber === 7) {
+    displayChamfer();
+  } else if (pageNumber === 8) {
+    displaySelection();
   }
 };
 
@@ -329,6 +410,129 @@ const displayHendel = function () {
 };
 // ==================== РЕНДЕР РУЧКИ =====================
 
+// ==================== РЕНДЕР Углов =====================
+const displayCorners = function () {
+  const btns = document.querySelectorAll(".next");
+  btns.forEach((btn) => {
+    btn.classList.add("disabled");
+  });
+
+  // рендер картинки актуальной и размеров
+  const pageImgCorners = document.querySelector(".corners-img__active");
+  pageImgCorners.src = `./assets/img/figure/const5/${stateDataForm.hendelImg}.png`;
+  renderSizesWH("corners");
+
+  cornersContainer.innerHTML = "";
+  corners.forEach((corner) => {
+    const html = `
+    <div class="corners-one page-box__one">
+        <span>${corner.text}</span>
+    </div>
+    `;
+    cornersContainer.insertAdjacentHTML("beforeend", html);
+  });
+  const cornersEl = document.querySelectorAll(".corners-one");
+  cornersEl.forEach((corner, id) => {
+    corner.addEventListener("click", () => {
+      btns.forEach((btn) => {
+        btn.classList.remove("disabled");
+      });
+      cornersEl.forEach((corner) => {
+        corner.classList.remove("active");
+      });
+      corner.classList.add("active");
+      stateDataForm.cornerSrc = `${stateDataForm.hendelImg}-${corners[id].src}`;
+      stateDataForm.cornerText = `${corners[id].text}`;
+      pageImgCorners.src = `./assets/img/figure/corners/${stateDataForm.cornerSrc}.png`;
+      console.log(stateDataForm.cornerSrc);
+    });
+  });
+};
+// ==================== РЕНДЕР Углов =====================
+
+// ==================== РЕНДЕР ФАСКИ =====================
+const displayChamfer = function () {
+  const btns = document.querySelectorAll(".next");
+  btns.forEach((btn) => {
+    btn.classList.add("disabled");
+  });
+
+  // рендер картинки актуальной и размеров
+  const pageImgСhamfer = document.querySelector(".сhamfer-img__active");
+  pageImgСhamfer.src = `./assets/img/figure/corners/${stateDataForm.cornerSrc}.png`;
+  renderSizesWH("chamfer");
+
+  chamferContainer.innerHTML = "";
+  chamfers.forEach((chamfer) => {
+    const html = `
+    <div class="chamfer-one page-box__one">
+        <span>${chamfer.text}</span>
+    </div>
+    `;
+    chamferContainer.insertAdjacentHTML("beforeend", html);
+  });
+  const chamferEl = document.querySelectorAll(".chamfer-one");
+  chamferEl.forEach((chamfer, id) => {
+    chamfer.addEventListener("click", () => {
+      btns.forEach((btn) => {
+        btn.classList.remove("disabled");
+      });
+      chamferEl.forEach((chamfer) => {
+        chamfer.classList.remove("active");
+      });
+      chamfer.classList.add("active");
+      stateDataForm.chamferSrc = `${stateDataForm.cornerSrc}-${chamfers[id].src}`;
+      stateDataForm.chamferText = `${chamfers[id].text}`;
+      pageImgСhamfer.src = `./assets/img/figure/chamfers/${stateDataForm.chamferSrc}.png`;
+      console.log(
+        `./assets/img/figure/chamfers/${stateDataForm.chamferSrc}.png`
+      );
+    });
+  });
+};
+// ==================== РЕНДЕР ФАСКИ =====================
+
+// ==================== РЕНДЕР ПОВЕРХНОСТИ =====================
+const displaySelection = function () {
+  const btns = document.querySelectorAll(".next");
+  btns.forEach((btn) => {
+    btn.classList.add("disabled");
+  });
+
+  // рендер картинки актуальной и размеров
+  const pageImgSelection = document.querySelector(".selection-img__active");
+  pageImgSelection.src = `./assets/img/figure/chamfers/${stateDataForm.chamferSrc}.png`;
+  renderSizesWH("selection");
+
+  selectionContainer.innerHTML = "";
+  selections.forEach((selection) => {
+    const html = `
+    <div class="selection-one page-box__one">
+        <span>${selection.text}</span>
+    </div>
+    `;
+    selectionContainer.insertAdjacentHTML("beforeend", html);
+  });
+  const selectionEl = document.querySelectorAll(".selection-one");
+  selectionEl.forEach((selection, id) => {
+    selection.addEventListener("click", () => {
+      btns.forEach((btn) => {
+        btn.classList.remove("disabled");
+      });
+      selectionEl.forEach((selection) => {
+        selection.classList.remove("active");
+      });
+      selection.classList.add("active");
+      stateDataForm.selectionSrc = `${stateDataForm.chamferSrc}-${selections[id].src}`;
+      stateDataForm.selectionText = `${selections[id].text}`;
+      pageImgSelection.src = `./assets/img/figure/selection/${stateDataForm.selectionSrc}.png`;
+      console.log(
+        `./assets/img/figure/selection/${stateDataForm.selectionSrc}.png`
+      );
+    });
+  });
+};
+// ==================== РЕНДЕР ПОВЕРХНОСТИ =====================
 btnOpenConstructor.addEventListener("click", () => {
   pageNumber++;
   pagesNumber();
