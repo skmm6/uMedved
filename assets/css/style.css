@@ -349,12 +349,18 @@
 /*====================================== chamfer ====================================== */
 
 .chamfer,
-.selection {
+.selection,
+.legs,
+.hole,
+.color {
   display: none;
 }
 
 .chamfer-one,
-.selection-one {
+.selection-one,
+.legs-one,
+.hole-one,
+.color-one {
   font-weight: 400;
   font-size: 12px;
   line-height: 15px;

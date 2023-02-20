@@ -26,9 +26,16 @@ const cornersContainer = document.querySelector(".corners-all");
 const chamferContainer = document.querySelector(".chamfer-all");
 // selection
 const selectionContainer = document.querySelector(".selection-all");
-
+// legs
+const legsContainer = document.querySelector(".legs-all");
+// hole
+const holeContainer = document.querySelector(".hole-all");
+// color
+const colorContainer = document.querySelector(".color-all");
+// form
+const formOutput = document.querySelector(".output-form");
 // стейт для страниц
-let pageNumber = 8;
+let pageNumber = 12;
 
 const kitchens = [
   "Итальянская кухня",
@@ -108,15 +115,43 @@ const arrSizes = [
 // ========================== РАЗМЕРЫ 1 объект 1 РАЗМЕР===================
 
 // ========================== РУЧКА===================
-const arrHendels = [
-  "Без ручки",
-  "hendel1",
-  "hendel2",
-  "hendel3",
-  "hendel4",
-  "hendel5",
-  "hendel6",
-];
+
+const hendel = {
+  src: "Без ручки",
+  text: "большая фаска на 45° ",
+};
+const hendel1 = {
+  src: "hendel1",
+  text: "минимальное, еле заметное закругление",
+};
+const hendel2 = {
+  src: "hendel2",
+  text: "среднее закругление",
+};
+const hendel3 = {
+  src: "hendel3",
+  text: "максимальное закругление",
+};
+const hendel4 = {
+  src: "hendel4",
+  text: "небольшая фаска на 45° ",
+};
+const hendel5 = {
+  src: "hendel5",
+  text: "большая фаска на 45° ",
+};
+
+const arrHendels = [hendel, hendel1, hendel2, hendel3, hendel4, hendel5];
+
+// const arrHendels = [
+//   "Без ручки",
+//   "hendel1",
+//   "hendel2",
+//   "hendel3",
+//   "hendel4",
+//   "hendel5",
+//   "hendel6",
+// ];
 // ========================== РУЧКА===================
 
 // ========================== УГЛЫ====================
@@ -182,6 +217,57 @@ const selection4 = {
 const selections = [selection1, selection2, selection3, selection4];
 // ========================== поверхности ===================
 
+// ========================== ножки====================
+const legs1 = {
+  src: "legs1",
+  text: " не хочу ножки",
+};
+const legs2 = {
+  src: "legs2",
+  text: "невысокие накладные ножки",
+};
+const legs3 = {
+  src: "legs3",
+  text: "вырезанные ножки чуть повыше",
+};
+
+const legss = [legs1, legs2, legs3];
+// ========================== ножки ===================
+
+// ========================== отверстие ====================
+const hole1 = {
+  src: "hole1",
+  text: "отверстие будет лишним для моей подачи",
+};
+const hole2 = {
+  src: "hole2",
+  text: "оставлю как на образце",
+};
+const hole3 = {
+  src: "hole3",
+  text: "сдалаем чуть побольше чем на образце",
+};
+
+const holes = [hole1, hole2, hole3];
+// ========================== отверстие ===================
+
+// ========================== ЦВЕТА ====================
+const color1 = {
+  src: "color1",
+  text: "давайте оставим цвет натурального дуба",
+};
+const color2 = {
+  src: "color2",
+  text: "обожаю темно-коричневый",
+};
+const color3 = {
+  src: "color3",
+  text: "выбираю брутальный чёрный",
+};
+
+const colors = [color1, color2, color3];
+// ========================== ЦВЕТА ===================
+
 // собираем данные с форм
 let stateDataForm = {
   figure: "kvadrat",
@@ -197,7 +283,11 @@ let stateDataForm = {
 // отоброжение контента конструктора
 
 const displayContent = function () {
-  if (pageNumber === 2) {
+  if (pageNumber === 0) {
+    document.querySelector(".next").classList.remove("disabled");
+  } else if (pageNumber === 1) {
+    document.querySelector(".next").classList.remove("disabled");
+  } else if (pageNumber === 2) {
     displayKitchens();
     document.forms.kitchens.oninput = function () {
       stateDataForm["kitchen"] =
@@ -221,6 +311,14 @@ const displayContent = function () {
     displayChamfer();
   } else if (pageNumber === 8) {
     displaySelection();
+  } else if (pageNumber === 9) {
+    displayLegs();
+  } else if (pageNumber === 10) {
+    displayHole();
+  } else if (pageNumber === 11) {
+    displayСolor();
+  } else if (pageNumber === 12) {
+    displayOutput();
   }
 };
 
@@ -368,10 +466,10 @@ const displayHendel = function () {
   renderSizesWH("hendel");
   hendelContainer.innerHTML = ``;
   arrHendels.forEach((hendel) => {
-    if (hendel[0] !== "h") {
+    if (hendel.src[0] !== "h") {
       const html = `
         <div class="hendel-one page-box__one">
-        <span>${hendel}</span>
+        <span>${hendel.src}</span>
         </div>
       `;
       hendelContainer.insertAdjacentHTML("beforeend", html);
@@ -379,7 +477,7 @@ const displayHendel = function () {
       const html = `
       <div class="hendel-one page-box__one">
         <img
-          src="./assets/img/figure/const5/${hendel}.png"
+          src="./assets/img/figure/const5/${hendel.src}.png"
           alt=""
           srcset=""
         />
@@ -533,6 +631,131 @@ const displaySelection = function () {
   });
 };
 // ==================== РЕНДЕР ПОВЕРХНОСТИ =====================
+
+// ==================== РЕНДЕР ножки =====================
+const displayLegs = function () {
+  const btns = document.querySelectorAll(".next");
+  btns.forEach((btn) => {
+    btn.classList.add("disabled");
+  });
+
+  // рендер картинки актуальной и размеров
+  const pageImgLegs = document.querySelector(".legs-img__active");
+  pageImgLegs.src = `./assets/img/figure/chamfers/${stateDataForm.chamferSrc}.png`;
+  renderSizesWH("legs");
+
+  legsContainer.innerHTML = "";
+  legss.forEach((legs) => {
+    const html = `
+    <div class="legs-one page-box__one">
+        <span>${legs.text}</span>
+    </div>
+    `;
+    legsContainer.insertAdjacentHTML("beforeend", html);
+  });
+  const legsEl = document.querySelectorAll(".legs-one");
+  legsEl.forEach((legs, id) => {
+    legs.addEventListener("click", () => {
+      btns.forEach((btn) => {
+        btn.classList.remove("disabled");
+      });
+      legsEl.forEach((legs) => {
+        legs.classList.remove("active");
+      });
+      legs.classList.add("active");
+      stateDataForm.legsSrc = `${stateDataForm.chamferSrc}-${legss[id].src}`;
+      stateDataForm.legsText = `${legss[id].text}`;
+      pageImgLegs.src = `./assets/img/figure/legs/${stateDataForm.legsSrc}.png`;
+      console.log(`./assets/img/figure/legs/${stateDataForm.legsSrc}.png`);
+    });
+  });
+};
+// ==================== РЕНДЕР ножки =====================
+
+// ==================== РЕНДЕР отверстие =====================
+const displayHole = function () {
+  const btns = document.querySelectorAll(".next");
+  btns.forEach((btn) => {
+    btn.classList.add("disabled");
+  });
+
+  // рендер картинки актуальной и размеров
+  const pageImgHole = document.querySelector(".hole-img__active");
+  pageImgHole.src = `./assets/img/figure/chamfers/${stateDataForm.legsSrc}.png`;
+  renderSizesWH("hole");
+
+  holeContainer.innerHTML = "";
+  holes.forEach((hole) => {
+    const html = `
+    <div class="hole-one page-box__one">
+        <span>${hole.text}</span>
+    </div>
+    `;
+    holeContainer.insertAdjacentHTML("beforeend", html);
+  });
+  const holeEl = document.querySelectorAll(".hole-one");
+  holeEl.forEach((hole, id) => {
+    hole.addEventListener("click", () => {
+      btns.forEach((btn) => {
+        btn.classList.remove("disabled");
+      });
+      holeEl.forEach((hole) => {
+        hole.classList.remove("active");
+      });
+      hole.classList.add("active");
+      stateDataForm.holeSrc = `${stateDataForm.chamferSrc}-${holes[id].src}`;
+      stateDataForm.holeText = `${holes[id].text}`;
+      pageImgHole.src = `./assets/img/figure/hole/${stateDataForm.holeSrc}.png`;
+      console.log(`./assets/img/figure/hole/${stateDataForm.holeSrc}.png`);
+    });
+  });
+};
+// ==================== РЕНДЕР отверстие =====================
+
+// ==================== РЕНДЕР цвета =====================
+const displayСolor = function () {
+  const btns = document.querySelectorAll(".next");
+  btns.forEach((btn) => {
+    btn.classList.add("disabled");
+  });
+
+  // рендер картинки актуальной и размеров
+  const pageImgcolor = document.querySelector(".color-img__active");
+  pageImgcolor.src = `./assets/img/figure/chamfers/${stateDataForm.holeSrc}.png`;
+  renderSizesWH("color");
+
+  colorContainer.innerHTML = "";
+  colors.forEach((color) => {
+    const html = `
+    <div class="color-one page-box__one">
+        <span>${color.text}</span>
+    </div>
+    `;
+    colorContainer.insertAdjacentHTML("beforeend", html);
+  });
+  const colorEl = document.querySelectorAll(".color-one");
+  colorEl.forEach((color, id) => {
+    color.addEventListener("click", () => {
+      btns.forEach((btn) => {
+        btn.classList.remove("disabled");
+      });
+      colorEl.forEach((color) => {
+        color.classList.remove("active");
+      });
+      color.classList.add("active");
+      stateDataForm.colorSrc = `${stateDataForm.chamferSrc}-${colors[id].src}`;
+      stateDataForm.colorText = `${colors[id].text}`;
+      pageImgcolor.src = `./assets/img/figure/color/${stateDataForm.colorSrc}.png`;
+      console.log(`./assets/img/figure/color/${stateDataForm.colorSrc}.png`);
+    });
+  });
+};
+// ==================== РЕНДЕР цвета =====================
+
+// РЕндер формы
+const displayOutput = function () {};
+// РЕндер формы
+
 btnOpenConstructor.addEventListener("click", () => {
   pageNumber++;
   pagesNumber();
