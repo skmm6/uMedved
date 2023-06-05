@@ -1,3 +1,9 @@
+@media screen and (max-width: 1800px) {
+  .footer {
+    margin-bottom: 0;
+  }
+}
+
 @media screen and (max-width: 1300px) {
   .app {
     display: block;
@@ -5,6 +11,10 @@
 
   .app-img {
     display: none;
+  }
+
+  .footer {
+    margin-top: 6.6rem;
   }
 
   .container-home {

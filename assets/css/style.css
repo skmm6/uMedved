@@ -1,3 +1,7 @@
+* {
+  --footer-mb: 6.6rem;
+}
+
 .app {
   display: flex;
 }
@@ -62,8 +66,8 @@
 .footer {
   max-width: 46rem;
   align-self: flex-end;
-  margin-top: 6.6rem;
-  margin-bottom: 6.6rem;
+  margin-top: var(--footer-mb);
+  margin-bottom: var(--footer-mb);
 }
 
 .footer-contact,
@@ -374,3 +378,7 @@
   padding: 4.5rem 1.5rem;
 }
 /*====================================== corners ====================================== */
+
+.output {
+  display: none;
+}

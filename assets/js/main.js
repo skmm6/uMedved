@@ -35,7 +35,7 @@ const colorContainer = document.querySelector(".color-all");
 // form
 const formOutput = document.querySelector(".output-form");
 // стейт для страниц
-let pageNumber = 12;
+let pageNumber = 0;
 
 const kitchens = [
   "Итальянская кухня",
@@ -285,6 +285,7 @@ let stateDataForm = {
 const displayContent = function () {
   if (pageNumber === 0) {
     document.querySelector(".next").classList.remove("disabled");
+    // document.querySelector(".footer").style.marginBottom = "0";
   } else if (pageNumber === 1) {
     document.querySelector(".next").classList.remove("disabled");
   } else if (pageNumber === 2) {
